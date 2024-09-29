@@ -1,0 +1,285 @@
+[
+  {
+    "code": 100,
+    "title": "Continue",
+    "description": "Indicates that the initial part of a request has been received and the client should continue the request.",
+    "image": "/images/100.png"
+  },
+  {
+    "code": 101,
+    "title": "Switching Protocols",
+    "description": "The server is switching protocols as requested by the client who sent a message including an Upgrade request header.",
+    "image": "/images/101.png"
+  },
+  {
+    "code": 102,
+    "title": "Processing",
+    "description": "A WebDAV request may contain many sub-requests involving file operations, requiring a long time to complete the request.",
+    "image": "/images/102.png"
+  },
+  {
+    "code": 103,
+    "title": "Early Hints",
+    "description": "Used to return some response headers before final HTTP message.",
+    "image": "/images/103.png"
+  },
+  {
+    "code": 200,
+    "title": "OK",
+    "description": "The request has succeeded. The meaning of the success depends on the HTTP method: GET: The resource has been fetched and is transmitted in the message body.",
+    "image": "/images/200.png"
+  },
+  {
+    "code": 201,
+    "title": "Created",
+    "description": "The request has succeeded and a new resource has been created as a result.",
+    "image": "/images/201.png"
+  },
+  {
+    "code": 202,
+    "title": "Accepted",
+    "description": "The request has been received but not yet acted upon. It is non-committal, since there is no way in HTTP to later send an asynchronous response indicating the outcome of processing the request.",
+    "image": "/images/202.png"
+  },
+  {
+    "code": 203,
+    "title": "Non-Authoritative Information",
+    "description": "The request was successful but the enclosed payload has been modified from that of the origin server's 200 OK response by a transforming proxy.",
+    "image": "/images/203.png"
+  },
+  {
+    "code": 204,
+    "title": "No Content",
+    "description": "There is no content to send for this request, but the headers may be useful. The user-agent may update its cached headers for this resource with the new ones.",
+    "image": "/images/204.png"
+  },
+  {
+    "code": 205,
+    "title": "Reset Content",
+    "description": "Tells the user-agent to reset the document which sent this request.",
+    "image": "/images/205.png"
+  },
+  {
+    "code": 206,
+    "title": "Partial Content",
+    "description": "The server is delivering only part of the resource due to a range header sent by the client.",
+    "image": "/images/206.png"
+  },
+  {
+    "code": 207,
+    "title": "Multi-Status",
+    "description": "Conveys information about multiple resources, for situations where multiple status codes might be appropriate.",
+    "image": "/images/207.png"
+  },
+  {
+    "code": 208,
+    "title": "Already Reported",
+    "description": "Used inside a DAV: propstat response element to avoid enumerating the internal members of multiple bindings to the same collection repeatedly.",
+    "image": "/images/208.png"
+  },
+  {
+    "code": 226,
+    "title": "IM Used",
+    "description": "The server has fulfilled a GET request for the resource, and the response is a representation of the result of one or more instance-manipulations applied to the current instance.",
+    "image": "/images/226.png"
+  },
+  {
+    "code": 300,
+    "title": "Multiple Choices",
+    "description": "The request has more than one possible responses. The user-agent or user should choose one of them.",
+    "image": "/images/300.png"
+  },
+  {
+    "code": 301,
+    "title": "Moved Permanently",
+    "description": "This response code means that the URI of the requested resource has been changed. Probably, the new URI would be given in the response.",
+    "image": "/images/301.png"
+  },
+  {
+    "code": 302,
+    "title": "Found",
+    "description": "This response code means that the URI of requested resource has been changed temporarily. New changes in the URI might be made in the future.",
+    "image": "/images/302.png"
+  },
+  {
+    "code": 303,
+    "title": "See Other",
+    "description": "The server sent this response to direct the client to get the requested resource at another URI with a GET request.",
+    "image": "/images/303.png"
+  },
+  {
+    "code": 304,
+    "title": "Not Modified",
+    "description": "This is used for caching purposes. It tells the client that the response has not been modified, so the client can continue to use the same cached version of the response.",
+    "image": "/images/304.png"
+  },
+  {
+    "code": 305,
+    "title": "Use Proxy",
+    "description": "Defined in a previous version of the HTTP specification to indicate that a requested response must be accessed by a proxy. It has been deprecated due to security concerns regarding in-band configuration of a proxy.",
+    "image": "/images/305.png"
+  },
+  {
+    "code": 307,
+    "title": "Temporary Redirect",
+    "description": "The server is redirecting requests for this resource to another URI temporarily. The temporary URI should be given by the Location field in the response.",
+    "image": "/images/307.png"
+  },
+  {
+    "code": 308,
+    "title": "Permanent Redirect",
+    "description": "This means that the resource is now permanently located at another URI, specified by the Location: HTTP Response header. This has the same semantics as the 301 Moved Permanently HTTP response code, with the exception that the user agent must not change the HTTP method used: if a POST was used in the first request, a POST must be used in the second request.",
+    "image": "/images/308.png"
+  },
+  {
+    "code": 400,
+    "title": "Bad Request",
+    "description": "The server could not understand the request due to invalid syntax.",
+    "image": "/images/400.png"
+  },
+  {
+    "code": 401,
+    "title": "Unauthorized",
+    "description": "Although the HTTP standard specifies 'unauthorized', semantically this response means 'unauthenticated'. That is, the client must authenticate itself to get the requested response.",
+    "image": "/images/401.png"
+  },
+  {
+    "code": 402,
+    "title": "Payment Required",
+    "description": "This code is reserved for future use.",
+    "image": "/images/402.png"
+  },
+  {
+    "code": 403,
+    "title": "Forbidden",
+    "description": "The client does not have access rights to the content; that is, it is unauthorized, so the server is refusing to give the requested resource. Unlike 401, the client's identity is known to the server.",
+    "image": "/images/403.png"
+  },
+  {
+    "code": 404,
+    "title": "Not Found",
+    "description": "The server can not find the requested resource. In the browser, this means the URL is not recognized. In an API, this can also mean that the endpoint is valid but the resource itself does not exist.",
+    "image": "/images/404.png"
+  },
+  {
+    "code": 405,
+    "title": "Method Not Allowed",
+    "description": "The request method is known by the server but has been disabled and cannot be used. For example, an API may forbid DELETE-ing a resource.",
+    "image": "/images/405.png"
+  },
+  {
+    "code": 406,
+    "title": "Not Acceptable",
+    "description": "This response is sent when the web server, after performing server-driven content negotiation, doesn't find any content that conforms to the criteria given by the user agent.",
+    "image": "/images/406.png"
+  },
+  {
+    "code": 407,
+    "title": "Proxy Authentication Required",
+    "description": "This is similar to 401 but authentication is needed to be done by a proxy.",
+    "image": "/images/407.png"
+  },
+  {
+    "code": 408,
+    "title": "Request Timeout",
+    "description": "This response is sent on an idle connection by some servers, even without any previous request by the client. It means that the server would like to shut down this unused connection.",
+    "image": "/images/408.png"
+  },
+  {
+    "code": 409,
+    "title": "Conflict",
+    "description": "This response is sent when a request conflicts with the current state of the server.",
+    "image": "/images/409.png"
+  },
+  {
+    "code": 410,
+    "title": "Gone",
+    "description": "This response is sent when the requested content has been permanently deleted from server, with no forwarding address. Clients are expected to remove their caches and links to the resource.",
+    "image": "/images/410.png"
+  },
+  {
+    "code": 411,
+    "title": "Length Required",
+    "description": "The server rejects the request because the content-length header field is not defined and the server requires it.",
+    "image": "/images/411.png"
+
+  },
+  {
+    "code": 413,
+    "title": "Payload Too Large",
+    "description": "The request is larger than the server is willing or able to process.",
+    "image": "/images/413.png"
+  },
+  {
+    "code": 414,
+    "title": "URI Too Long",
+    "description": "The URI requested by the client is longer than the server is willing to interpret.",
+    "image": "/images/414.png"
+  },
+  {
+    "code": 417,
+    "title": "Expectation Failed",
+    "description": "The server cannot meet the requirements of the Expect request-header field.",
+    "image": "/images/417.png"
+  },
+  {
+    "code": 418,
+    "title": "I'm a teapot",
+    "description": "This code was defined in 1998 as one of the traditional IETF April Fools' jokes, in RFC 2324, Hyper Text Coffee Pot Control Protocol, and is not expected to be implemented by actual HTTP servers.",
+    "image": "/images/418.png"
+  },
+  {
+    "code": 425,
+    "title": "Too Early",
+    "description": "Indicates that the server is unwilling to risk processing a request that might be replayed.",
+    "image": "/images/425.png"
+  },
+  {
+    "code": 429,
+    "title": "Too Many Requests",
+    "description": "The user has sent too many requests in a given amount of time. Intended for use with rate-limiting schemes.",
+    "image": "/images/429.png"
+  },
+  {
+    "code": 431,
+    "title": "Request Header Fields Too Large",
+    "description": "The server is unwilling to process the request because its header fields are too large. The request MAY be resubmitted after reducing the size of the request header fields.",
+    "image": "/images/431.png"
+  },
+  {
+    "code": 451,
+    "title": "Unavailable For Legal Reasons",
+    "description": "The server is denying access to the resource as a consequence of a legal demand.",
+    "image": "/images/451.png"
+  },
+  {
+    "code": 500,
+    "title": "Internal Server Error",
+    "description": "The server has encountered a situation it doesn't know how to handle.",
+    "image": "/images/500.png"
+  },
+  {
+    "code": 502,
+    "title": "Bad Gateway",
+    "description": "The server was acting as a gateway or proxy and received an invalid response from the upstream server.",
+    "image": "/images/502.png"
+  },
+  {
+    "code": 504,
+    "title": "Gateway Timeout",
+    "description": "The server was acting as a gateway or proxy and did not receive a timely response from the upstream server.",
+    "image": "/images/504.png"
+  },
+  {
+    "code": 508,
+    "title": "Loop Detected",
+    "description": "The server detected an infinite loop while processing the request (sent instead of 208 Already Reported).",
+    "image": "/images/508.png"
+  },
+  {
+    "code": 599,
+    "title": "Network Connect Timeout Error",
+    "description": "This status code is not specified in any RFCs, but is used by some HTTP proxies to signal a network connect timeout behind the proxy to a client in front of the proxy.",
+    "image": "/images/599.png"
+  }
+]
