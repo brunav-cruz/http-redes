@@ -8,7 +8,6 @@ build_dir = '/Users/brunacruz/Desktop/http-redes/http-codes/dist'
 
 # Inicia a API Node.js como um subprocesso
 node_process = subprocess.Popen(['node', '/Users/brunacruz/Desktop/http-redes/http-codes-api/server.js'])
-print("API Node.js iniciada...")
 
 # Lê o arquivo index.html do build do Vite
 with open(os.path.join(build_dir, 'index.html'), 'r') as h:

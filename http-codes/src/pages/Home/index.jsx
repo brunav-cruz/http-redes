@@ -1,10 +1,10 @@
 import React, { useState, useEffect } from 'react';
-import HttpCodeCard from './components/HttpCards';
-import HeaderWithSearch from './components/HttpHeader/index';
+import HttpCodeCard from '../../components/HttpCards';
+import HeaderWithSearch from '../../components/HttpHeaderWithSearch/index';
 import { IconButton, InputBase } from '@mui/material';
 import SearchIcon from '@mui/icons-material/Search';
 import { StyledMain, StyledContainer } from './styles';
-import { SearchContainer } from './components/HttpHeader/styles';
+import { SearchContainer } from '../../components/HttpHeaderWithSearch/styles';
 import { api } from '../../services/api';
 
 const HttpCodeList = () => {
