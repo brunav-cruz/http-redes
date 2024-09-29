@@ -2,7 +2,7 @@ import axios from 'axios';
 
 export function setupAPI(){
     const api = axios.create({
-        baseURL: 'https://http-codes-api-64nb.onrender.com/',
+        baseURL: 'http://192.168.15.4:3122/',
         headers: {
             'Content-Type': 'application/json',
         }

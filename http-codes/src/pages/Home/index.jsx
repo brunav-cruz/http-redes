@@ -8,23 +8,16 @@ import { SearchContainer } from './components/HttpHeader/styles';
 import { api } from '../../services/api';
 
 const HttpCodeList = () => {
-  const [httpCodes, setHttpCodes] = useState([]);
+  const [allHttpCodes, setAllHttpCodes] = useState([]);
+  const [displayedHttpCodes, setDisplayedHttpCodes] = useState([]);
   const [term, setTerm] = useState('');
-
-  const handleTerm = (event) => {
-    setTerm(event.target.value);
-  };
-
-  const handleSearch = (event) => {
-    event.preventDefault();
-    console.log('Searching for:', term);
-  };
 
   useEffect(() => {
     const fetchHttpCodes = async () => {
       try {
         const response = await api.get('/');
-        setHttpCodes(response.data);
+        setAllHttpCodes(response.data);
+        setDisplayedHttpCodes(response.data);
       } catch (error) {
         console.error("Failed to fetch HTTP codes", error);
       }
@@ -33,13 +26,24 @@ const HttpCodeList = () => {
     fetchHttpCodes();
   }, []);
 
+  useEffect(() => {
+    const filteredCodes = term !== '' ? allHttpCodes.filter(httpCode =>
+      httpCode.code.toString().includes(term)
+    ) : allHttpCodes;
+    setDisplayedHttpCodes(filteredCodes);
+  }, [term, allHttpCodes]);
+
+  const handleSearch = (searchTerm) => {
+    setTerm(searchTerm);
+  };
+
   return (
     <>
-      <HeaderWithSearch />
+      <HeaderWithSearch onSearch={handleSearch} />
       <StyledMain>
         <StyledContainer>
-          {httpCodes.map((httpCode) => (
-              <HttpCodeCard key={httpCode.code} httpCode={httpCode} />
+          {displayedHttpCodes.map(httpCode => (
+            <HttpCodeCard key={httpCode.code} httpCode={httpCode} />
           ))}
         </StyledContainer>
       </StyledMain>
@@ -48,3 +52,5 @@ const HttpCodeList = () => {
 };
 
 export default HttpCodeList;
+
+

@@ -18,7 +18,7 @@ const HttpCodeCard = ({ httpCode }) => {
 
   const imageUrl = httpCode.image.startsWith('http') 
     ? httpCode.image 
-    : `https://http-codes-api-64nb.onrender.com${httpCode.image}`;
+    : `http://192.168.15.4:3122${httpCode.image}`;
 
   return (
     <StyledItemContainer onClick={handleClick}>
