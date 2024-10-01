@@ -12,5 +12,5 @@ app.use(express.static(path.join(__dirname, 'public')));
 app.use('/', httpCodesRoutes);
 
 app.listen(port, () => {
-  console.log(`API rodando em http://localhost:${port}`);
+  console.log(`API rodando na porta: ${port}...`);
 });
