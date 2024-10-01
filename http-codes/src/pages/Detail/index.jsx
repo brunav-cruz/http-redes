@@ -8,6 +8,8 @@ const CodeDetail = () => {
   const { code } = useParams();
   const [details, setDetails] = useState({});
 
+  const ipAddress = import.meta.env.VITE_IP_ADDRESS;
+
   useEffect(() => {
     const fetchDetails = async () => {
       try {
@@ -28,7 +30,7 @@ const CodeDetail = () => {
         <Header />
         <CodeContainer>
             <CodeTitle>{details.code} {details.title}</CodeTitle>
-            <CodeImage src={`http://192.168.15.4:3122/images/${code}.png`} alt={`HTTP Status Code ${code}`} />
+            <CodeImage src={`http://${ipAddress}:3122/images/${code}.png`} alt={`HTTP Status Code ${code}`} />
             <CodeDescriptionTitle>Descrição:</CodeDescriptionTitle>
             <CodeDescription>{details.description || 'No description available.'}</CodeDescription>
             <CodeDescriptionTitle>Veja mais em: <a href={mozilaURL}>{mozilaURL}</a></CodeDescriptionTitle>

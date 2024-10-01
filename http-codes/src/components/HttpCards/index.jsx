@@ -12,13 +12,15 @@ import {
 const HttpCodeCard = ({ httpCode }) => {
   const navigate = useNavigate();
 
+  const ipAddress = import.meta.env.VITE_IP_ADDRESS;
+
   const handleClick = () => {
     navigate(`/code/${httpCode.code}`);
   };
 
   const imageUrl = httpCode.image.startsWith('http') 
     ? httpCode.image 
-    : `http://192.168.15.4:3122${httpCode.image}`;
+    : `http://${ipAddress}:3122${httpCode.image}`;
 
   return (
     <StyledItemContainer onClick={handleClick}>
