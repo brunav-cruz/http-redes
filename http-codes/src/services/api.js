@@ -1,5 +1,9 @@
 import axios from 'axios';
 
+const ipAddress = import.meta.env.VITE_IP_ADDRESS;
+
+const url = `http://${ipAddress}:3122/`
+
 export function setupAPI(){
     const ipAddress = import.meta.env.VITE_IP_ADDRESS;
     const url = `http://${ipAddress}:3122/`

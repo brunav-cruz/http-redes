@@ -25,6 +25,8 @@ const CodeDetail = () => {
 
   const ipAddress = import.meta.env.VITE_IP_ADDRESS;
 
+  const ipAddress = import.meta.env.VITE_IP_ADDRESS;
+
   useEffect(() => {
     const fetchDetails = async () => {
       setLoading(true);
