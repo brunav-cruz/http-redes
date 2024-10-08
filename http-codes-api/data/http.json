@@ -2,284 +2,505 @@
   {
     "code": 100,
     "title": "Continue",
-    "description": "Indicates that the initial part of a request has been received and the client should continue the request.",
-    "image": "/images/100.png"
+    "description": "Indica que a parte inicial de uma solicitação foi recebida e que o cliente deve continuar com a solicitação. Este código é utilizado principalmente quando o cliente envia um cabeçalho `Expect: 100-continue` para verificar se o servidor está disposto a aceitar a solicitação antes de enviar o corpo da mensagem.",
+    "image": "/images/100.png",
+    "useExamples": [
+      "Um cliente que pretende enviar um grande upload pode primeiro enviar um cabeçalho `Expect: 100-continue`. Se o servidor responder com 100 Continue, o cliente procede a enviar o corpo da solicitação."
+    ],
+    "similarCodes": [101, 102]
   },
   {
     "code": 101,
     "title": "Switching Protocols",
-    "description": "The server is switching protocols as requested by the client who sent a message including an Upgrade request header.",
-    "image": "/images/101.png"
+    "description": "O servidor está alternando para um protocolo diferente conforme solicitado pelo cliente, que enviou uma mensagem incluindo um cabeçalho `Upgrade`. Este código indica que a mudança de protocolo será efetuada após a resposta.",
+    "image": "/images/101.png",
+    "useExamples": [
+      "Atualização de um protocolo HTTP para WebSocket. O cliente envia um cabeçalho `Upgrade: websocket`, e o servidor responde com 101 Switching Protocols para confirmar a mudança."
+    ],
+    "similarCodes": [100, 102]
   },
   {
     "code": 102,
     "title": "Processing",
-    "description": "A WebDAV request may contain many sub-requests involving file operations, requiring a long time to complete the request.",
-    "image": "/images/102.png"
+    "description": "Indica que o servidor recebeu e está processando a solicitação, mas ainda não terminou. Este código é específico para o protocolo WebDAV e é utilizado quando uma solicitação envolve múltiplas operações que levam tempo para serem concluídas.",
+    "image": "/images/102.png",
+    "useExamples": [
+      "Uma solicitação WebDAV que envolve a criação de múltiplos arquivos e pastas pode receber um 102 Processing enquanto todas as operações estão em andamento."
+    ],
+    "similarCodes": [100, 101]
   },
   {
     "code": 103,
     "title": "Early Hints",
-    "description": "Used to return some response headers before final HTTP message.",
-    "image": "/images/103.png"
+    "description": "Utilizado para retornar alguns cabeçalhos de resposta antes da mensagem HTTP final. Este código permite que o cliente inicie ações antecipadas, como pré-carregamento de recursos, enquanto a resposta final está sendo preparada.",
+    "image": "/images/103.png",
+    "useExamples": [
+      "Um servidor pode enviar um 103 Early Hints com cabeçalhos `Link` para pré-carregar folhas de estilo ou scripts enquanto processa a solicitação principal."
+    ],
+    "similarCodes": [100, 102]
   },
   {
     "code": 200,
     "title": "OK",
-    "description": "The request has succeeded. The meaning of the success depends on the HTTP method: GET: The resource has been fetched and is transmitted in the message body.",
-    "image": "/images/200.png"
+    "description": "A solicitação foi bem-sucedida. O significado do sucesso depende do método HTTP utilizado:\n- **GET:** O recurso foi recuperado e está sendo transmitido no corpo da mensagem.\n- **POST:** O recurso foi criado ou modificado conforme a solicitação.\n- **PUT/PATCH:** O recurso foi atualizado com sucesso.",
+    "image": "/images/200.png",
+    "useExamples": [
+      "GET: Recuperar informações de um usuário via API RESTful.",
+      "POST: Enviar dados de um formulário para criação de um novo registro no banco de dados."
+    ],
+    "similarCodes": [201, 204]
   },
   {
     "code": 201,
     "title": "Created",
-    "description": "The request has succeeded and a new resource has been created as a result.",
-    "image": "/images/201.png"
+    "description": "A solicitação foi bem-sucedida e um novo recurso foi criado como resultado. Este código é geralmente retornado em resposta a solicitações **POST** ou **PUT** que resultam na criação de um recurso.",
+    "image": "/images/201.png",
+    "useExamples": [
+      "Após enviar dados para criar um novo usuário, o servidor responde com 201 Created e inclui a localização do novo recurso no cabeçalho `Location`."
+    ],
+    "similarCodes": [200, 202]
   },
   {
     "code": 202,
     "title": "Accepted",
-    "description": "The request has been received but not yet acted upon. It is non-committal, since there is no way in HTTP to later send an asynchronous response indicating the outcome of processing the request.",
-    "image": "/images/202.png"
+    "description": "A solicitação foi recebida, mas ainda não foi processada. Este código indica que a solicitação foi aceita para processamento, mas o processamento não foi concluído. Não há garantia de que a solicitação será processada com sucesso.",
+    "image": "/images/202.png",
+    "useExamples": [
+      "Enviar uma solicitação para processamento assíncrono, como a geração de um relatório. O servidor responde com 202 Accepted e o processamento ocorre em segundo plano."
+    ],
+    "similarCodes": [200, 201]
   },
   {
     "code": 203,
     "title": "Non-Authoritative Information",
-    "description": "The request was successful but the enclosed payload has been modified from that of the origin server's 200 OK response by a transforming proxy.",
-    "image": "/images/203.png"
+    "description": "A solicitação foi bem-sucedida, mas as informações retornadas foram modificadas por um proxy ou outro intermediário. O payload incluído na resposta pode não ser exatamente o que o servidor de origem enviaria.",
+    "image": "/images/203.png",
+    "useExamples": [
+      "Um proxy que altera o conteúdo de uma resposta, como inserir banners de publicidade, pode retornar um 203 Non-Authoritative Information para indicar que a resposta foi modificada."
+    ],
+    "similarCodes": [200, 300]
   },
   {
     "code": 204,
     "title": "No Content",
-    "description": "There is no content to send for this request, but the headers may be useful. The user-agent may update its cached headers for this resource with the new ones.",
-    "image": "/images/204.png"
+    "description": "A solicitação foi bem-sucedida, mas não há conteúdo para enviar na resposta. Este código é frequentemente usado quando a resposta não precisa retornar dados, mas os cabeçalhos podem ser úteis para o cliente.",
+    "image": "/images/204.png",
+    "useExamples": [
+      "Uma solicitação de exclusão bem-sucedida que não retorna conteúdo.",
+      "Atualização de um recurso onde não há necessidade de retornar o recurso atualizado."
+    ],
+    "similarCodes": [200, 205]
   },
   {
     "code": 205,
     "title": "Reset Content",
-    "description": "Tells the user-agent to reset the document which sent this request.",
-    "image": "/images/205.png"
+    "description": "Informa ao agente do usuário para redefinir o documento que enviou esta solicitação. É utilizado quando é necessário que o cliente limpe ou redefina a interface do usuário após uma ação bem-sucedida.",
+    "image": "/images/205.png",
+    "useExamples": [
+      "Após enviar um formulário, o servidor responde com 205 Reset Content para instruir o navegador a limpar os campos do formulário."
+    ],
+    "similarCodes": [204, 206]
   },
   {
     "code": 206,
     "title": "Partial Content",
-    "description": "The server is delivering only part of the resource due to a range header sent by the client.",
-    "image": "/images/206.png"
+    "description": "O servidor está entregando apenas uma parte do recurso devido a um cabeçalho de intervalo enviado pelo cliente. Este código é usado para suportar a transferência parcial de dados, permitindo que os clientes façam download de partes específicas de um recurso.",
+    "image": "/images/206.png",
+    "useExamples": [
+      "Download de uma parte específica de um arquivo de vídeo usando o cabeçalho `Range`.",
+      "Streaming de mídia onde o cliente solicita segmentos específicos do conteúdo."
+    ],
+    "similarCodes": [200, 207]
   },
   {
     "code": 207,
     "title": "Multi-Status",
-    "description": "Conveys information about multiple resources, for situations where multiple status codes might be appropriate.",
-    "image": "/images/207.png"
+    "description": "Convey informações sobre múltiplos recursos, para situações onde múltiplos códigos de status podem ser apropriados. É frequentemente usado em respostas WebDAV para indicar o status de várias operações em uma única solicitação.",
+    "image": "/images/207.png",
+    "useExamples": [
+      "Uma solicitação WebDAV que envolve várias operações em diferentes arquivos pode receber um 207 Multi-Status com detalhes sobre o sucesso ou falha de cada operação individual."
+    ],
+    "similarCodes": [208, 226]
   },
   {
     "code": 208,
     "title": "Already Reported",
-    "description": "Used inside a DAV: propstat response element to avoid enumerating the internal members of multiple bindings to the same collection repeatedly.",
-    "image": "/images/208.png"
+    "description": "Usado dentro de um elemento de resposta DAV: propstat para evitar enumerar repetidamente os membros internos de múltiplos bindings para a mesma coleção.",
+    "image": "/images/208.png",
+    "useExamples": [
+      "Em uma resposta WebDAV que referencia múltiplos recursos já relatados anteriormente, o servidor pode usar 208 Already Reported para indicar que esses recursos já foram incluídos na resposta."
+    ],
+    "similarCodes": [207, 226]
   },
   {
     "code": 226,
     "title": "IM Used",
-    "description": "The server has fulfilled a GET request for the resource, and the response is a representation of the result of one or more instance-manipulations applied to the current instance.",
-    "image": "/images/226.png"
+    "description": "O servidor cumpriu uma solicitação GET para o recurso, e a resposta é uma representação do resultado de uma ou mais manipulações de instância aplicadas à instância atual. Este código é específico para o WebDAV.",
+    "image": "/images/226.png",
+    "useExamples": [
+      "Aplicação de filtros ou transformações a um recurso antes de retornar a resposta final ao cliente."
+    ],
+    "similarCodes": [207, 208]
   },
   {
     "code": 300,
     "title": "Multiple Choices",
-    "description": "The request has more than one possible responses. The user-agent or user should choose one of them.",
-    "image": "/images/300.png"
+    "description": "A solicitação tem mais de uma possível resposta. O agente do usuário ou o usuário deve escolher uma delas. Este código pode ser usado para fornecer diferentes representações de um recurso.",
+    "image": "/images/300.png",
+    "useExamples": [
+      "Uma URL que pode retornar diferentes formatos (JSON, XML, HTML) dependendo da preferência do cliente.",
+      "Seleção entre diferentes versões de um recurso em múltiplos idiomas."
+    ],
+    "similarCodes": [301, 302]
   },
   {
     "code": 301,
     "title": "Moved Permanently",
-    "description": "This response code means that the URI of the requested resource has been changed. Probably, the new URI would be given in the response.",
-    "image": "/images/301.png"
+    "description": "Este código de resposta significa que a URI do recurso solicitado foi alterada permanentemente. Provavelmente, a nova URI será fornecida na resposta através do cabeçalho `Location`.",
+    "image": "/images/301.png",
+    "useExamples": [
+      "Redirecionamento permanente de uma página antiga para uma nova URL após uma reestruturação do site.",
+      "Mudança de domínio de um recurso, indicando aos clientes e motores de busca para atualizar os links."
+    ],
+    "similarCodes": [302, 308]
   },
   {
     "code": 302,
     "title": "Found",
-    "description": "This response code means that the URI of requested resource has been changed temporarily. New changes in the URI might be made in the future.",
-    "image": "/images/302.png"
+    "description": "Este código de resposta significa que a URI do recurso solicitado foi alterada temporariamente. Novas mudanças na URI podem ser feitas no futuro.",
+    "image": "/images/302.png",
+    "useExamples": [
+      "Redirecionamento temporário para uma página de manutenção enquanto a página original está sendo atualizada.",
+      "Redirecionamento de usuários para uma versão de teste de um serviço enquanto a versão principal está em produção."
+    ],
+    "similarCodes": [301, 307]
   },
   {
     "code": 303,
     "title": "See Other",
-    "description": "The server sent this response to direct the client to get the requested resource at another URI with a GET request.",
-    "image": "/images/303.png"
+    "description": "O servidor enviou esta resposta para direcionar o cliente a obter o recurso solicitado em outra URI com uma solicitação GET. É utilizado principalmente após uma solicitação POST para evitar reenvios acidentais.",
+    "image": "/images/303.png",
+    "useExamples": [
+      "Após o envio de um formulário com POST, o servidor responde com 303 See Other para redirecionar o cliente para uma página de confirmação usando GET.",
+      "Redirecionamento para uma página diferente após a criação de um recurso, garantindo que o cliente possa atualizar a página sem reenviar dados."
+    ],
+    "similarCodes": [302, 307]
   },
   {
     "code": 304,
     "title": "Not Modified",
-    "description": "This is used for caching purposes. It tells the client that the response has not been modified, so the client can continue to use the same cached version of the response.",
-    "image": "/images/304.png"
+    "description": "Este código é usado para fins de cache. Informa ao cliente que a resposta não foi modificada, permitindo que o cliente continue a usar a mesma versão em cache da resposta.",
+    "image": "/images/304.png",
+    "useExamples": [
+      "Verificação de cache onde o cliente envia um cabeçalho `If-Modified-Since` e o servidor responde com 304 Not Modified se o recurso não mudou.",
+      "Redução de uso de largura de banda ao permitir que navegadores reutilizem recursos em cache."
+    ],
+    "similarCodes": [200, 304]
   },
   {
     "code": 305,
     "title": "Use Proxy",
-    "description": "Defined in a previous version of the HTTP specification to indicate that a requested response must be accessed by a proxy. It has been deprecated due to security concerns regarding in-band configuration of a proxy.",
-    "image": "/images/305.png"
+    "description": "Definido em uma versão anterior da especificação HTTP para indicar que uma resposta solicitada deve ser acessada por meio de um proxy. Este código foi descontinuado devido a preocupações de segurança relacionadas à configuração em banda de um proxy.",
+    "image": "/images/305.png",
+    "useExamples": [
+      "Historicamente, um servidor poderia usar 305 Use Proxy para indicar que o cliente deve acessar o recurso através de um proxy específico."
+    ],
+    "similarCodes": [307, 308]
   },
   {
     "code": 307,
     "title": "Temporary Redirect",
-    "description": "The server is redirecting requests for this resource to another URI temporarily. The temporary URI should be given by the Location field in the response.",
-    "image": "/images/307.png"
+    "description": "O servidor está redirecionando temporariamente as solicitações para este recurso para outra URI. A URI temporária deve ser fornecida no campo `Location` da resposta. O método HTTP original deve ser mantido.",
+    "image": "/images/307.png",
+    "useExamples": [
+      "Redirecionamento temporário para uma nova API durante uma migração de serviço.",
+      "Encaminhamento de tráfego para uma instância diferente de um serviço durante manutenção."
+    ],
+    "similarCodes": [302, 308]
   },
   {
     "code": 308,
     "title": "Permanent Redirect",
-    "description": "This means that the resource is now permanently located at another URI, specified by the Location: HTTP Response header. This has the same semantics as the 301 Moved Permanently HTTP response code, with the exception that the user agent must not change the HTTP method used: if a POST was used in the first request, a POST must be used in the second request.",
-    "image": "/images/308.png"
+    "description": "Indica que o recurso agora está permanentemente localizado em outra URI, especificada pelo cabeçalho de resposta `Location`. Este código tem a mesma semântica que o 301 Moved Permanently, com a exceção de que o agente do usuário não deve alterar o método HTTP usado: se um POST foi usado na primeira solicitação, um POST deve ser usado na segunda solicitação.",
+    "image": "/images/308.png",
+    "useExamples": [
+      "Redirecionamento permanente para uma nova API ou domínio após uma mudança estrutural.",
+      "Indicação aos motores de busca para atualizar seus índices para a nova localização do recurso."
+    ],
+    "similarCodes": [301, 307]
   },
   {
     "code": 400,
     "title": "Bad Request",
-    "description": "The server could not understand the request due to invalid syntax.",
-    "image": "/images/400.png"
+    "description": "O servidor não conseguiu entender a solicitação devido à sintaxe inválida. O cliente não deve repetir a solicitação sem modificações.",
+    "image": "/images/400.png",
+    "useExamples": [
+      "Envio de dados malformados em uma solicitação JSON.",
+      "Falha na validação de parâmetros obrigatórios em uma solicitação de API."
+    ],
+    "similarCodes": [404, 422]
   },
   {
     "code": 401,
     "title": "Unauthorized",
-    "description": "Although the HTTP standard specifies 'unauthorized', semantically this response means 'unauthenticated'. That is, the client must authenticate itself to get the requested response.",
-    "image": "/images/401.png"
+    "description": "Embora o padrão HTTP especifique 'unauthorized' (não autorizado), semanticamente esta resposta significa 'não autenticado'. Ou seja, o cliente deve autenticar-se para obter a resposta solicitada.",
+    "image": "/images/401.png",
+    "useExamples": [
+      "Acesso a uma API protegida sem fornecer um token de autenticação válido.",
+      "Tentativa de acessar uma página restrita sem credenciais adequadas."
+    ],
+    "similarCodes": [403, 407]
   },
   {
     "code": 402,
     "title": "Payment Required",
-    "description": "This code is reserved for future use.",
-    "image": "/images/402.png"
+    "description": "Este código está reservado para uso futuro. Atualmente, não é utilizado na maioria das implementações HTTP.",
+    "image": "/images/402.png",
+    "useExamples": [
+      "Reserva para implementações futuras que possam requerer pagamento para acessar determinados recursos."
+    ],
+    "similarCodes": []
   },
   {
     "code": 403,
     "title": "Forbidden",
-    "description": "The client does not have access rights to the content; that is, it is unauthorized, so the server is refusing to give the requested resource. Unlike 401, the client's identity is known to the server.",
-    "image": "/images/403.png"
+    "description": "O cliente não tem direitos de acesso ao conteúdo; ou seja, está não autorizado, então o servidor está se recusando a fornecer o recurso solicitado. Diferentemente de 401, a identidade do cliente é conhecida pelo servidor.",
+    "image": "/images/403.png",
+    "useExamples": [
+      "Tentativa de acessar uma área administrativa sem permissões adequadas.",
+      "Acesso a arquivos ou recursos restritos sem privilégios suficientes."
+    ],
+    "similarCodes": [401, 404]
   },
   {
     "code": 404,
     "title": "Not Found",
-    "description": "The server can not find the requested resource. In the browser, this means the URL is not recognized. In an API, this can also mean that the endpoint is valid but the resource itself does not exist.",
-    "image": "/images/404.png"
+    "description": "O servidor não pode encontrar o recurso solicitado. No navegador, isso significa que a URL não é reconhecida. Em uma API, isso também pode significar que o endpoint é válido, mas o recurso em si não existe.",
+    "image": "/images/404.png",
+    "useExamples": [
+      "Acesso a uma página inexistente em um site.",
+      "Solicitação de um recurso que foi removido ou nunca existiu na API."
+    ],
+    "similarCodes": [400, 403]
   },
   {
     "code": 405,
     "title": "Method Not Allowed",
-    "description": "The request method is known by the server but has been disabled and cannot be used. For example, an API may forbid DELETE-ing a resource.",
-    "image": "/images/405.png"
+    "description": "O método de solicitação é conhecido pelo servidor, mas foi desativado e não pode ser usado. Por exemplo, uma API pode proibir a exclusão de um recurso.",
+    "image": "/images/405.png",
+    "useExamples": [
+      "Envio de uma solicitação DELETE para um endpoint que só aceita GET e POST.",
+      "Tentativa de usar o método PUT em um recurso somente leitura."
+    ],
+    "similarCodes": [400, 501]
   },
   {
     "code": 406,
     "title": "Not Acceptable",
-    "description": "This response is sent when the web server, after performing server-driven content negotiation, doesn't find any content that conforms to the criteria given by the user agent.",
-    "image": "/images/406.png"
+    "description": "Esta resposta é enviada quando o servidor web, após realizar uma negociação de conteúdo orientada pelo servidor, não encontra nenhum conteúdo que atenda aos critérios fornecidos pelo agente do usuário.",
+    "image": "/images/406.png",
+    "useExamples": [
+      "Solicitação de um recurso em um formato não suportado pelo servidor, como solicitar XML quando o servidor só fornece JSON.",
+      "Definição de cabeçalhos `Accept` que não correspondem a nenhum conteúdo disponível."
+    ],
+    "similarCodes": [406, 415]
   },
   {
     "code": 407,
     "title": "Proxy Authentication Required",
-    "description": "This is similar to 401 but authentication is needed to be done by a proxy.",
-    "image": "/images/407.png"
+    "description": "Semelhante ao 401 Unauthorized, mas a autenticação deve ser realizada por um proxy. O cliente deve primeiro autenticar-se com o proxy antes de a solicitação original ser processada.",
+    "image": "/images/407.png",
+    "useExamples": [
+      "Acesso a uma rede corporativa que exige autenticação de proxy para acessar recursos externos.",
+      "Uso de um proxy que requer credenciais antes de encaminhar a solicitação para o servidor de destino."
+    ],
+    "similarCodes": [401, 407]
   },
   {
     "code": 408,
     "title": "Request Timeout",
-    "description": "This response is sent on an idle connection by some servers, even without any previous request by the client. It means that the server would like to shut down this unused connection.",
-    "image": "/images/408.png"
+    "description": "Esta resposta é enviada em uma conexão ociosa por alguns servidores, mesmo sem qualquer solicitação anterior do cliente. Significa que o servidor deseja encerrar esta conexão inativa.",
+    "image": "/images/408.png",
+    "useExamples": [
+      "Cliente que demora muito para enviar uma solicitação após estabelecer a conexão com o servidor.",
+      "Sessão expirada devido a inatividade prolongada durante a comunicação."
+    ],
+    "similarCodes": [408, 504]
   },
   {
     "code": 409,
     "title": "Conflict",
-    "description": "This response is sent when a request conflicts with the current state of the server.",
-    "image": "/images/409.png"
+    "description": "Esta resposta é enviada quando uma solicitação entra em conflito com o estado atual do servidor. Isso pode ocorrer, por exemplo, quando há conflitos de edição simultânea de um recurso.",
+    "image": "/images/409.png",
+    "useExamples": [
+      "Tentativa de atualizar um recurso que foi modificado por outro processo desde a última recuperação.",
+      "Conflito de versões ao tentar criar um recurso que já existe."
+    ],
+    "similarCodes": [409, 422]
   },
   {
     "code": 410,
     "title": "Gone",
-    "description": "This response is sent when the requested content has been permanently deleted from server, with no forwarding address. Clients are expected to remove their caches and links to the resource.",
-    "image": "/images/410.png"
+    "description": "Esta resposta é enviada quando o conteúdo solicitado foi permanentemente removido do servidor, sem um endereço de redirecionamento. Espera-se que os clientes removam seus caches e links para o recurso.",
+    "image": "/images/410.png",
+    "useExamples": [
+      "Recurso que foi removido permanentemente e não será mais disponibilizado no futuro.",
+      "Página que foi deletada e não será substituída por outra."
+    ],
+    "similarCodes": [404, 410]
   },
   {
     "code": 411,
     "title": "Length Required",
-    "description": "The server rejects the request because the content-length header field is not defined and the server requires it.",
-    "image": "/images/411.png"
-
+    "description": "O servidor rejeita a solicitação porque o campo de cabeçalho `Content-Length` não está definido e o servidor o requer.",
+    "image": "/images/411.png",
+    "useExamples": [
+      "Envio de uma solicitação POST sem o cabeçalho `Content-Length` quando o servidor exige esse campo.",
+      "Solicitação de upload de arquivos onde o tamanho do conteúdo não foi especificado."
+    ],
+    "similarCodes": [400, 411]
   },
   {
     "code": 413,
     "title": "Payload Too Large",
-    "description": "The request is larger than the server is willing or able to process.",
-    "image": "/images/413.png"
+    "description": "A solicitação é maior do que o servidor está disposto ou é capaz de processar. Este código é retornado quando o corpo da solicitação excede os limites estabelecidos pelo servidor.",
+    "image": "/images/413.png",
+    "useExamples": [
+      "Upload de um arquivo que excede o tamanho máximo permitido pelo servidor.",
+      "Envio de dados em uma solicitação POST que ultrapassa os limites de tamanho configurados."
+    ],
+    "similarCodes": [413, 414]
   },
   {
     "code": 414,
     "title": "URI Too Long",
-    "description": "The URI requested by the client is longer than the server is willing to interpret.",
-    "image": "/images/414.png"
+    "description": "A URI solicitada pelo cliente é mais longa do que o servidor está disposto a interpretar. Isso pode ocorrer devido a URLs excessivamente longas ou parâmetros de consulta.",
+    "image": "/images/414.png",
+    "useExamples": [
+      "Solicitação de uma URL com uma string de consulta excessivamente longa.",
+      "Uso de parâmetros de URL para transmitir grandes quantidades de dados que excedem os limites do servidor."
+    ],
+    "similarCodes": [414, 400]
   },
   {
     "code": 417,
     "title": "Expectation Failed",
-    "description": "The server cannot meet the requirements of the Expect request-header field.",
-    "image": "/images/417.png"
+    "description": "O servidor não pode atender aos requisitos do campo de cabeçalho `Expect` na solicitação. Isso ocorre quando o servidor não suporta as expectativas especificadas pelo cliente.",
+    "image": "/images/417.png",
+    "useExamples": [
+      "Envio de uma solicitação com `Expect: 100-continue` quando o servidor não suporta esse comportamento.",
+      "Cliente que espera um tipo específico de resposta que o servidor não pode fornecer."
+    ],
+    "similarCodes": [417, 400]
   },
   {
     "code": 418,
     "title": "I'm a teapot",
-    "description": "This code was defined in 1998 as one of the traditional IETF April Fools' jokes, in RFC 2324, Hyper Text Coffee Pot Control Protocol, and is not expected to be implemented by actual HTTP servers.",
-    "image": "/images/418.png"
+    "description": "Este código foi definido em 1998 como uma das piadas tradicionais do IETF, no RFC 2324, Hyper Text Coffee Pot Control Protocol, e não se espera que seja implementado por servidores HTTP reais.",
+    "image": "/images/418.png",
+    "useExamples": [
+      "Uso em brincadeiras ou exemplos didáticos para ilustrar códigos de status HTTP personalizados."
+    ],
+    "similarCodes": [],
+    "note": "Este código é parte de uma RFC de brincadeira e não deve ser utilizado em implementações reais."
   },
   {
     "code": 425,
     "title": "Too Early",
-    "description": "Indicates that the server is unwilling to risk processing a request that might be replayed.",
-    "image": "/images/425.png"
+    "description": "Indica que o servidor está relutante em arriscar processar uma solicitação que pode ser reproduzida. Este código é utilizado para evitar problemas como replay attacks em conexões seguras.",
+    "image": "/images/425.png",
+    "useExamples": [
+      "Negativa a processar solicitações prematuras em um protocolo que requer sincronização temporal.",
+      "Prevenção de ataques de repetição ao rejeitar solicitações que chegam antes do tempo previsto."
+    ],
+    "similarCodes": [425, 429]
   },
   {
     "code": 429,
     "title": "Too Many Requests",
-    "description": "The user has sent too many requests in a given amount of time. Intended for use with rate-limiting schemes.",
-    "image": "/images/429.png"
+    "description": "O usuário enviou muitas solicitações em um determinado período de tempo. Destinado a ser usado com esquemas de limitação de taxa para controlar o uso excessivo de recursos.",
+    "image": "/images/429.png",
+    "useExamples": [
+      "API que impõe limites de taxa para evitar abusos, respondendo com 429 Too Many Requests quando o limite é excedido.",
+      "Bloqueio temporário de um endereço IP após um número excessivo de tentativas de login falhadas."
+    ],
+    "similarCodes": [429, 403]
   },
   {
     "code": 431,
     "title": "Request Header Fields Too Large",
-    "description": "The server is unwilling to process the request because its header fields are too large. The request MAY be resubmitted after reducing the size of the request header fields.",
-    "image": "/images/431.png"
+    "description": "O servidor está relutante em processar a solicitação porque os campos de cabeçalho são muito grandes. A solicitação PODE ser reenviada após reduzir o tamanho dos campos de cabeçalho.",
+    "image": "/images/431.png",
+    "useExamples": [
+      "Solicitações com cabeçalhos `Cookie` excessivamente grandes que excedem os limites do servidor.",
+      "Uso de cabeçalhos personalizados que ultrapassam o tamanho máximo permitido."
+    ],
+    "similarCodes": [431, 400]
   },
   {
     "code": 451,
     "title": "Unavailable For Legal Reasons",
-    "description": "The server is denying access to the resource as a consequence of a legal demand.",
-    "image": "/images/451.png"
+    "description": "O servidor está negando o acesso ao recurso como consequência de uma exigência legal. Isso pode ocorrer devido a ordens judiciais ou regulamentações governamentais.",
+    "image": "/images/451.png",
+    "useExamples": [
+      "Remoção de conteúdo censurado ou bloqueado por lei.",
+      "Restrição de acesso a recursos devido a sanções ou diretrizes legais específicas."
+    ],
+    "similarCodes": [403, 404]
   },
   {
     "code": 500,
     "title": "Internal Server Error",
-    "description": "The server has encountered a situation it doesn't know how to handle.",
-    "image": "/images/500.png"
+    "description": "O servidor encontrou uma situação que não sabe como lidar. É um erro genérico quando nenhuma outra mensagem de erro é mais apropriada.",
+    "image": "/images/500.png",
+    "useExamples": [
+      "Exceções não tratadas ou falhas inesperadas no código do servidor.",
+      "Erros de configuração que impedem o processamento adequado das solicitações."
+    ],
+    "similarCodes": [501, 502]
   },
   {
     "code": 502,
     "title": "Bad Gateway",
-    "description": "The server was acting as a gateway or proxy and received an invalid response from the upstream server.",
-    "image": "/images/502.png"
+    "description": "O servidor estava atuando como um gateway ou proxy e recebeu uma resposta inválida do servidor upstream.",
+    "image": "/images/502.png",
+    "useExamples": [
+      "Falha na comunicação com um servidor de backend durante o processamento de uma solicitação proxy.",
+      "Recebimento de uma resposta malformada de um serviço externo usado pelo servidor."
+    ],
+    "similarCodes": [502, 504]
   },
   {
     "code": 504,
     "title": "Gateway Timeout",
-    "description": "The server was acting as a gateway or proxy and did not receive a timely response from the upstream server.",
-    "image": "/images/504.png"
+    "description": "O servidor estava atuando como um gateway ou proxy e não recebeu uma resposta oportuna do servidor upstream.",
+    "image": "/images/504.png",
+    "useExamples": [
+      "Timeout ao tentar se comunicar com um servidor de backend lento.",
+      "Solicitações que excedem o tempo limite configurado ao se conectar a serviços externos."
+    ],
+    "similarCodes": [502, 504]
   },
   {
     "code": 508,
     "title": "Loop Detected",
-    "description": "The server detected an infinite loop while processing the request (sent instead of 208 Already Reported).",
-    "image": "/images/508.png"
+    "description": "O servidor detectou um loop infinito enquanto processava a solicitação (enviado em vez de 208 Already Reported).",
+    "image": "/images/508.png",
+    "useExamples": [
+      "Detecção de loops infinitos em redirecionamentos ou chamadas recursivas dentro de uma API.",
+      "Prevenção de recursão excessiva que pode levar ao esgotamento de recursos do servidor."
+    ],
+    "similarCodes": [208, 500]
   },
   {
     "code": 599,
     "title": "Network Connect Timeout Error",
-    "description": "This status code is not specified in any RFCs, but is used by some HTTP proxies to signal a network connect timeout behind the proxy to a client in front of the proxy.",
-    "image": "/images/599.png"
+    "description": "Este código de status não está especificado em nenhum RFC, mas é usado por alguns proxies HTTP para sinalizar um timeout de conexão de rede atrás do proxy para um cliente na frente do proxy.",
+    "image": "/images/599.png",
+    "useExamples": [
+      "Timeout de conexão ao tentar se conectar a um servidor através de um proxy HTTP que não responde a tempo.",
+      "Erros de rede que impedem a conclusão de uma solicitação através de um proxy intermediário."
+    ],
+    "similarCodes": [504, 599]
   }
 ]
